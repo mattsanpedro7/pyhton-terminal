@@ -20,6 +20,11 @@ class Database(object):
         # need to access URI inside class Database
         client = pymongo.MongoClient(Database.URI)
         Database.DATABASE = client['python-udemy']
+        print(Database.DATABASE)
+
+    @staticmethod
+    def insert(collection, data):
+        Database.DATABASE[collection].insert(data)
 
     @staticmethod
     def find(collection, query):
