@@ -2,11 +2,13 @@
 # basis for object oriented programming
 from models.post import Post
 from models.database import Database
+from models.blog import Blog
 
 # initialize db
 Database.initialize()
 
-# an instance of class
+###### VERIFY IF POST WORKS #######
+# # an instance of class
 # post = Post(blog_id='123',
 #             title='Singularity',
 #             content='Is near',
@@ -21,9 +23,25 @@ Database.initialize()
 # for post in posts:
 #     print(post)
 
-# blog class
-blog = Blog(author='Matt',
+# # blog class
+# blog = Blog(author='Matt',
+#             title='Sample title',
+#             description='sample description')
+
+# blog.new_post()
+
+# blog.save_to_mongo()
+
+# Blog.from_mongo()
+
+
+###### VERIFY IF BLOG WORKS #######
+blog = Blog(author='Matt', 
             title='Sample title',
-            description='sample description')
+            description='Sample description')
 
 blog.new_post()
+
+blog.save_to_mongo()
+
+from_database = Blog.from_mongo()
