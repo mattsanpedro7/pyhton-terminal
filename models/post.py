@@ -1,13 +1,15 @@
 # things that have same properties
 import uuid
 from models.database import Database
+import datetime
+
 
 
 class Post(object):
 
     # which properties the post should have
     # init: method I am going to create...
-    def __init__(self, title, content, author, date, id=None):
+    def __init__(self, title, content, author, date=datetime.datetime.utcnow(), id=None):
         self.blog_id = blog_id
         self.title = title
         self.content = content
@@ -15,7 +17,7 @@ class Post(object):
         self.created_date = date
         # uuid is the module
         # uuid4 method to generate => 4 is random
-        # .hex 32-character hexi-decimal string
+        # .hex 32-character hexadecimal string
         self.id = uuid.uuid4().hex if id is None else id
 
     def save_to_mongo(self):
