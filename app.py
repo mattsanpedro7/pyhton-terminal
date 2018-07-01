@@ -7,7 +7,16 @@ from models.database import Database
 Database.initialize()
 
 # an instance of class
-post = Post('Hello', 'World', 'Matt')
-# post.content = 'changed content'
+# post = Post(blog_id='123',
+#             title='Singularity',
+#             content='Is near',
+#             author='Bob')
+# post.save_to_mongo()
 
-print(post.content)
+# find_id = Post.from_mongo('33501ef603e24ded9ea94549581438b7')
+# print('find', find_id)
+
+posts = Post.from_blog('123')
+# print(posts)
+for post in posts:
+    print(post)
