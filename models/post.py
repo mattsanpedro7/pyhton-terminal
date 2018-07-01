@@ -1,4 +1,5 @@
 # things that have same properties
+import uuid
 from models.database import Database
 
 class Post(object):
