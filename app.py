@@ -44,4 +44,4 @@ blog.new_post()
 
 blog.save_to_mongo()
 
-from_database = Blog.from_mongo()
+from_database = Blog.from_mongo(blog.id)
