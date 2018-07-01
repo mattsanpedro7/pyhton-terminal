@@ -2,16 +2,21 @@
 import uuid
 from models.database import Database
 
+
 class Post(object):
+
     # which properties the post should have
     # init: method I am going to create...
-    def __init__(self, title, content, author):
+    def __init__(self, title, content, author, date, id=None):
         self.blog_id = blog_id
         self.title = title
         self.content = content
         self.author = author
         self.created_date = date
-        self.id = id
+        # uuid is the module
+        # uuid4 method to generate => 4 is random
+        # .hex 32-character hexi-decimal string
+        self.id = uuid.uuid4().hex if id is None else id
 
     def save_to_mongo(self):
         Database.insert(collection='posts',
