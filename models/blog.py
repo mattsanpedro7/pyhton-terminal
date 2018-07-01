@@ -54,7 +54,7 @@ class Blog(object):
     # instead of static we can use classmethod
     # instead of data we can now return an object
     @classmethod
-    def get_from_mongo(cls, id):
+    def from_mongo(cls, id):
         blog_data = Database.find_one(collection='blogs',
                                       query={'id': id})
         # create a blog with this blog data...
