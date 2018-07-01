@@ -4,7 +4,7 @@ import pymongo
 # database inherit from object.  database will contain object's methods
 class Database(object):
     # we want all connections to go through here
-    # this uri will be the same for all database, static property!
+    # this uri will be the same for all database, we declare static varialbes URI and DATABASE
     URI = "mongodb://127.0.0.1:27017"
     # db is a blueprint
     DATABASE = None
@@ -20,3 +20,13 @@ class Database(object):
         # need to access URI inside class Database
         client = pymongo.MongoClient(Database.URI)
         Database.DATABASE = client['python-udemy']
+
+    @staticmethod
+    def find(collection, query):
+        Database.DATABASE[collection].find(query)
+
+    @staticmethod
+    def find_one(collection, query):
+        Database.DATABASE[collection].find_one(query)
+
+
