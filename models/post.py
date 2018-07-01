@@ -9,7 +9,7 @@ class Post(object):
 
     # which properties the post should have
     # init: method I am going to create...
-    def __init__(self, title, content, author, date=datetime.datetime.utcnow(), id=None):
+    def __init__(self, blog_id, title, content, author, date=datetime.datetime.utcnow(), id=None):
         self.blog_id = blog_id
         self.title = title
         self.content = content
