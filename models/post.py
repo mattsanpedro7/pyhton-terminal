@@ -36,11 +36,24 @@ class Post(object):
         }
 
     # method: post from mongo given an id and it will give us back data
-    @staticmethod
-    def from_mongo(id):
+    # @staticmethod
+    # def from_mongo(id):
+    #     # don't have to write "collection="
+    #     # Post.from_mongo('123')
+    #     return Database.find_one(collection='posts', query={'id': id})
+
+    # refactor to class method
+    @classmethod
+    def from_mongo(cls, id):
         # don't have to write "collection="
         # Post.from_mongo('123')
-        return Database.find_one(collection='posts', query={'id': id})
+        post_data = Database.find_one(collection='posts', query={'id': id})
+        return cls(blog_id=post_data['blog_id'], 
+                    title=post_data['title'], 
+                    content=post_data['content'], 
+                    author=post_data['author'], 
+                    date=post_data['created_date'],
+                    id=post_data['id'])
 
     @staticmethod
     def from_blog(id):
