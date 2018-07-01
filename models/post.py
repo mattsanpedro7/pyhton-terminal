@@ -40,7 +40,7 @@ class Post(object):
     def from_mongo(id):
         # don't have to write "collection="
         # Post.from_mongo('123')
-        return Database.find_one(collection='posts', query={'id', id})
+        return Database.find_one(collection='posts', query={'id': id})
 
     @staticmethod
     def from_blog(id):
