@@ -1,4 +1,5 @@
 from models.database import Database
+from models.blog import Blog
 
 
 class Menu(object):
@@ -18,11 +19,18 @@ class Menu(object):
             self._prompt_user_for_account()
 
     def _user_has_account(self):
-        blog = Database.find_one('blogs', {'author': self.user}) is not None
+        # adding "is not None" to end turns it to boolean
+        blog = Database.find_one('blogs', {'author': self.user}) # is not None
+        print('BLOG', blog)
+        
+
         if blog is not None:
-            self.user_blog = blog
+            print('TRUE SELF', self.user_blog)
+            # object of type blog
+            self.user_blog = Blog.from_mongo(blog['id'])
             return True
         else:
+            print('FALSE SELF', self.user_blog)
             return False
 
     def _prompt_user_for_account(self):
@@ -42,15 +50,33 @@ class Menu(object):
         # if read:
         if read_or_write == 'R':
             # list blogs in db
+            self._list_blogs()
+            self._view_blog()
             # allow user to pick one
             # display posts
-            pass
+            # pass
         # if write
         elif read_or_write == 'W':
             # check if user has a blog
             # if they do, prompt to write a post
+            self.user_blog.new_post()
             # if not, prompt to create new blog
             pass
         else:
             print('Thank you for blogging!')
-            
+
+    def _list_blogs(self):
+        blogs = Database.find(collection='blogs', query={})
+
+        for blog in blogs:
+            print('ID: {}, Title: {}, Author: {}'.format(
+                blog['id'], blog['title'], blog['author']))
+
+    def _view_blog(self):
+        blog_to_see = input('Enter the ID of the blog you\'d like to read: ')
+        blog = Blog.from_mongo(blog_to_see)
+        posts = blog.get_posts()
+
+        for post in posts:
+            print('Date: {}, Title: {}\n\n{}'.format(
+                post['created_date'], post['title'], post['content']))
