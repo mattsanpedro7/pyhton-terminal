@@ -60,10 +60,11 @@ class Blog(object):
     # instead of data we can now return an object
     @classmethod
     def from_mongo(cls, id):
-        blog_data = Database.find_one(collection='blogs',
-                                      query={'id': id})
+        blog_data = Database.find_one(collection='blogs', query={'id': id})
         # create a blog with this blog data...
         # return an object of type blog
+        print('BLOG DATA:', blog_data)
+        
         return cls(author=blog_data['author'],
                     title=blog_data['title'],
                     description=blog_data['description'],

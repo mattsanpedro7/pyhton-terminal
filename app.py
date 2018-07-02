@@ -1,8 +1,10 @@
 # models is container with class Post
 # basis for object oriented programming
-from models.post import Post
+
+# from models.post import Post
 from models.database import Database
-from models.blog import Blog
+# from models.blog import Blog
+from models.menu import Menu
 
 # initialize db
 Database.initialize()
@@ -35,15 +37,19 @@ Database.initialize()
 # Blog.from_mongo()
 
 
-###### VERIFY IF BLOG WORKS #######
-blog = Blog(author='Matt', 
-            title='Sample title',
-            description='Sample description')
+# ###### VERIFY IF BLOG WORKS #######
+# blog = Blog(author='Matt', 
+#             title='Sample title',
+#             description='Sample description')
 
-blog.new_post()
+# blog.new_post()
 
-blog.save_to_mongo()
+# blog.save_to_mongo()
 
-from_database = Blog.from_mongo(blog.id)
+# from_database = Blog.from_mongo(blog.id)
 
-print(blog.get_posts())
+# print(blog.get_posts())
+
+menu = Menu()
+
+menu.run_menu()
